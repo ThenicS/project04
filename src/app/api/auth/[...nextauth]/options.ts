@@ -1,6 +1,8 @@
 import type { NextAuthOptions } from 'next-auth';
 import type { PrismaClient } from '@prisma/client/extension';
+import type { JWT } from 'next-auth/jwt';
 import GitHubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 // import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 
@@ -13,12 +15,23 @@ export const options: NextAuthOptions = {
             clientId: process.env.GITHUB_ID as string,
             clientSecret: process.env.GITHUB_SECRET as string,
             // authorization: {
-            //     params: { },
+            //     params: {},
             // },
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID as string,
+            clientSecret: process.env.GOOGLE_SECRET as string,
         }),
     ],
     callbacks: {
-        // Using the `...rest` parameter to be able to narrow down the type based on `trigger`
+        async jwt({ token, account }) {
+            if (account) {
+                token.id_token = account.id_token;
+                token.provider = account.provider;
+                token.accessToken = account.access_token;
+            }
+            return token;
+        },
         async session({ session, trigger, newSession }) {
             // Note, that `rest.session` can be any arbitrary object, remember to validate it!
             if (trigger === 'update' && newSession?.user) {
