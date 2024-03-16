@@ -5,11 +5,10 @@ import Profile from '@/components/Profile/profile';
 
 export default async function Home() {
     const session = await getServerSession(options);
-    console.log(session);
+    // console.log(session);
     // console.log(options);
     return (
         <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-            <div>Hello Test</div>
             <div>
                 <Button>Click me</Button>
             </div>
