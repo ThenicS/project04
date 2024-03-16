@@ -6,7 +6,7 @@ import GoogleProvider from 'next-auth/providers/google';
 // import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 
-import { db } from '@/app/lib/db';
+import { db } from '@/lib/db';
 
 export const options: NextAuthOptions = {
     adapter: PrismaAdapter(db) as PrismaClient,
@@ -24,15 +24,16 @@ export const options: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async jwt({ token, account }) {
+        async jwt({ token, account, user }) {
             if (account) {
                 token.id_token = account.id_token;
                 token.provider = account.provider;
                 token.accessToken = account.access_token;
+                token.uid = user.id;
             }
             return token;
         },
-        async session({ session, trigger, newSession }) {
+        async session({ session, trigger, newSession, token }) {
             // Note, that `rest.session` can be any arbitrary object, remember to validate it!
             if (trigger === 'update' && newSession?.user) {
                 // You can update the session in the database if it's not already updated.
@@ -40,6 +41,9 @@ export const options: NextAuthOptions = {
 
                 // Make sure the updated value is reflected on the client
                 session.user = newSession.user;
+            }
+            if (session?.user) {
+                (session.user as any).id = token.sub;
             }
             return session;
         },
@@ -52,7 +56,7 @@ export const options: NextAuthOptions = {
         // You can still force a JWT session by explicitly defining `"jwt"`.
         // When using `"database"`, the session cookie will only contain a `sessionToken` value,
         // which is used to look up the session in the database.
-        strategy: 'database',
+        strategy: 'jwt',
 
         // Seconds - How long until an idle session expires and is no longer valid.
         maxAge: 30 * 24 * 60 * 60, // 30 days
