@@ -4,8 +4,9 @@ import { useSession } from 'next-auth/react';
 
 export default function Profile() {
     const session = useSession();
-    console.log(session.data);
+    // console.log('Profile', session);
     if (session.data?.user) {
+        // console.log('ThenicS', session);
         return (
             <div>
                 From client: User is Signed in
@@ -13,6 +14,7 @@ export default function Profile() {
             </div>
         );
     }
+    console.log('ThenicS', session.status);
 
     return <div>From client: User is NOT Signed in</div>;
 }
