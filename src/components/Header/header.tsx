@@ -8,7 +8,7 @@ import {
 import HeaderAuth from '../Header-Auth/header-auth';
 import Link from 'next/link';
 
-export default function Header() {
+const Header = () => {
     return (
         <Navbar className='shadow mb-6'>
             <NavbarBrand>
@@ -26,4 +26,7 @@ export default function Header() {
             </NavbarContent>
         </Navbar>
     );
-}
+};
+
+// ***************************
+export default Header;

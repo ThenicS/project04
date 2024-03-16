@@ -9,7 +9,14 @@ export default function Home() {
     // console.log(options);
     return (
         <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-            Home
+            <div className='grid grid-cols-4 gap-4 p-4'>
+                <div className='col-span-3'>
+                    <h1 className='text-xl m2'>Top Post</h1>
+                </div>
+                <div>
+                    <TopicCreateForm />
+                </div>
+            </div>
         </main>
     );
 }

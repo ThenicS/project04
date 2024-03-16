@@ -15,7 +15,7 @@ import {
     PopoverContent,
 } from '@nextui-org/react';
 
-export default function HeaderAuth() {
+const HeaderAuth = () => {
     const session = useSession();
     const userImage = (session.data?.user?.image as string) || undefined;
 
@@ -53,4 +53,7 @@ export default function HeaderAuth() {
     }
 
     return <>{authContent}</>;
-}
+};
+
+// ***************************
+export default HeaderAuth;
