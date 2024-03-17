@@ -1,0 +1,15 @@
+depoy vercel
+https://vercel.com/guides/nextjs-prisma-postgres
+
+depoy Next-Auth
+https://next-auth.js.org/deployment
+
+schema.prisma
+https://authjs.dev/reference/adapter/prisma
+
+Monaco Editor
+https://www.npmjs.com/package/monaco-editor
+
+
+TypeScript-first schema declaration and validation library
+https://zod.dev/?id=basic-usage

@@ -2,6 +2,8 @@
 // import { getServerSession } from 'next-auth/next';
 // import { Button } from '@nextui-org/react';
 // import Profile from '@/components/Profile/profile';
+import { Divider } from '@nextui-org/react';
+import TopicList from '@/components/Topics/topic-list';
 import TopicCreateForm from '@/components/Topics/topic-create-form';
 export default function Home() {
     // const session = await getServerSession(options);
@@ -13,8 +15,11 @@ export default function Home() {
                 <div className='col-span-3'>
                     <h1 className='text-xl m2'>Top Post</h1>
                 </div>
-                <div>
+                <div className='border shadow py-3 px-2'>
                     <TopicCreateForm />
+                    <Divider className='my-2' />
+                    <h3 className='text-lg'>Topics</h3>
+                    <TopicList />
                 </div>
             </div>
         </main>

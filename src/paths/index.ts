@@ -2,7 +2,7 @@ const paths = {
     homePage() {
         return '/';
     },
-    toppicPage(topicSlug: string) {
+    topicsPage(topicSlug: string) {
         return `/topics/${topicSlug}`;
     },
     createPostPage(topicSlug: string) {
