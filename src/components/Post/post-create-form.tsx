@@ -1,4 +1,5 @@
 'use client';
+
 import FormButton from '../Common/form-button';
 import * as actions from '@/lib/actions';
 import { useFormState } from 'react-dom';
@@ -10,11 +11,18 @@ import {
     PopoverContent,
     Popover,
 } from '@nextui-org/react';
+
+interface IPostCreateFormProps {
+    slug: string;
+}
 //
-const PostCreateForm = () => {
-    const [formState, formAction] = useFormState(actions.createPost, {
-        errors: {},
-    });
+const PostCreateForm = ({ slug }: IPostCreateFormProps) => {
+    const [formState, formAction] = useFormState(
+        actions.createPost.bind(null, slug),
+        {
+            errors: {},
+        }
+    );
 
     return (
         <Popover placement='left'>
@@ -31,14 +39,22 @@ const PostCreateForm = () => {
                             labelPlacement='outside'
                             placeholder='Title'
                             isInvalid={!!formState.errors.title}
+                            errorMessage={formState.errors.title?.join(', ')}
                         />
-                        <Input
+                        <Textarea
                             name='content'
                             label='Content'
                             labelPlacement='outside'
                             placeholder='Content'
                             isInvalid={!!formState.errors.content}
+                            errorMessage={formState.errors.content?.join(', ')}
                         />
+
+                        {formState.errors._form ? (
+                            <div className='p-2 bg-red-200 border border-red-400 rounded-xl'>
+                                {formState.errors._form?.join(', ')}
+                            </div>
+                        ) : null}
                         <FormButton children='Create'></FormButton>
                     </div>
                 </form>

@@ -9,6 +9,7 @@ import { z } from 'zod';
 import paths from '@/paths';
 
 import type { Post } from '@prisma/client';
+import type { User } from '@prisma/client';
 // import { error } from 'console';
 interface ICreatePostFormState {
     errors: {
@@ -19,16 +20,15 @@ interface ICreatePostFormState {
 }
 
 const postSchema = z.object({
-    title: z
-        .string()
-        .min(5)
-        .regex(/^[a-zA-Z0-9-]+$/, {
-            message: 'Must letters and number or dash without Spaces',
-        }),
-    content: z.string().min(5),
+    title: z.string().min(3),
+    // .regex(/^[a-zA-Z0-9-]+$/, {
+    //     message: 'Must letters and number or dash without Spaces'
+    // }),
+    content: z.string().min(10),
 });
 
 export async function createPost(
+    slug: string,
     formState: ICreatePostFormState,
     formData: FormData
 ): Promise<ICreatePostFormState> {
@@ -53,12 +53,29 @@ export async function createPost(
             },
         };
     }
+    // console.log(session.user.id);
+
+    // Find topic with slug
+    const topic = await db.topic.findFirst({
+        where: { slug },
+    });
+
+    if (!topic) {
+        return {
+            errors: {
+                _form: ['Topic not Found !'],
+            },
+        };
+    }
+
     let post: Post;
     try {
         post = await db.post.create({
             data: {
                 title: result.data.title,
                 content: result.data.content,
+                userId: session.user.id,
+                topicId: topic.id,
             },
         });
     } catch (error: unknown) {
@@ -77,5 +94,7 @@ export async function createPost(
             };
         }
     }
-    redirect(paths.topicsPage(post.title));
+    console.log(slug);
+    revalidatePath(paths.topicsPage(slug));
+    redirect(paths.postPage(slug, post.id));
 }

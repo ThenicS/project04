@@ -7,7 +7,7 @@ import TopicList from '@/components/Topics/topic-list';
 import TopicCreateForm from '@/components/Topics/topic-create-form';
 export default function Home() {
     // const session = await getServerSession(options);
-    // console.log(session);
+    // console.log(session.user.id);
     // console.log(options);
     return (
         <main className='flex min-h-screen flex-col items-center justify-between p-24'>
