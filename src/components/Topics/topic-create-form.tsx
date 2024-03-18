@@ -50,7 +50,7 @@ const TopicCreateForm = () => {
                                 {formState.errors._form?.join(', ')}
                             </div>
                         ) : null}
-                        <FormButton children={'Submit'}></FormButton>
+                        <FormButton>Submit</FormButton>
                     </div>
                 </form>
             </PopoverContent>

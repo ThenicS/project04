@@ -55,7 +55,7 @@ const PostCreateForm = ({ slug }: IPostCreateFormProps) => {
                                 {formState.errors._form?.join(', ')}
                             </div>
                         ) : null}
-                        <FormButton children='Create'></FormButton>
+                        <FormButton>Create</FormButton>
                     </div>
                 </form>
             </PopoverContent>
