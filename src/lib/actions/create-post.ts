@@ -45,7 +45,7 @@ export async function createPost(
         console.log('postSchema safeParse Not Success');
         return { errors: result.error.flatten().fieldErrors };
     }
-    const session = await getServerSession(options);
+    const session: any = await getServerSession(options);
     if (!session || !session.user) {
         return {
             errors: {
