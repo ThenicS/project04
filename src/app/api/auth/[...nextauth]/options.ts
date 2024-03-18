@@ -48,6 +48,7 @@ export const options: NextAuthOptions = {
             return session;
         },
     },
+    secret: process.env.NEXTAUTH_SECRET,
 
     session: {
         // Choose how you want to save the user session.
