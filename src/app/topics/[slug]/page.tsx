@@ -1,6 +1,7 @@
 //
 //
 import PostList from '@/components/Post/post-list';
+import { fetchPostByTopicSLug } from '@/db/queries/posts';
 import PostCreateForm from '@/components/Post/post-create-form';
 
 interface ITopicPageProps {
@@ -16,7 +17,7 @@ export default function TopicPage({ params }: ITopicPageProps) {
             <div className='col-span-3'>
                 <h1 className='text-2xl font-bold mb-2'>{slug}</h1>
 
-                <PostList />
+                <PostList fetchData={() => fetchPostByTopicSLug(slug)} />
             </div>
             <div>
                 <PostCreateForm slug={slug} />
