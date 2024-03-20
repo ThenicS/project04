@@ -15,7 +15,7 @@ const CommentList = async ({ comments }: ICommentListProps) => {
     //
     const comments2 = await comments();
     const renderComments = comments2.map((comment) => {
-        return <div>{comment.content}</div>;
+        return <div key={comment.id}>{comment.content}</div>;
     });
     return (
         <div>
