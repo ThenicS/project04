@@ -2,7 +2,7 @@ import Link from 'next/link';
 //
 import paths from '@/paths';
 
-import type { PostWithData } from '@/db/queries/posts';
+import type { PostWithData } from '@/lib/queries/posts';
 import type { User, Topic, Post } from '@prisma/client';
 
 interface IPostListProps {

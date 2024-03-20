@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { Chip } from '@nextui-org/react';
-import { db } from '@/lib/db';
+import { db } from '@/lib/database/db';
 
 import paths from '@/paths/index';
 

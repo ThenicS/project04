@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { options } from '@/app/api/auth/[...nextauth]/options';
-import { db } from '@/lib/db';
+import { db } from '@/lib/database/db';
 import { z } from 'zod';
 import paths from '@/paths';
 

@@ -1,19 +1,20 @@
 //
 //
-//
+import CommentCreateForm from '@/components/Comment/comment-create-form';
+import PostShow from '@/components/Post/post-show';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import paths from '@/paths';
 import path from 'path';
 import { comment } from 'postcss';
-interface IPostPageProps {
+interface IPageProps {
     params: {
         slug: string;
         postId: string;
     };
 }
-export default function PostPage({ params }: IPostPageProps) {
-    console.log(params);
+export default function PostPage({ params }: IPageProps) {
+    //
     const { slug, postId } = params;
 
     return (
@@ -23,8 +24,8 @@ export default function PostPage({ params }: IPostPageProps) {
                 href={paths.topicsPage(slug)}>
                 {'< '}Back to {slug}
             </Link>
-            {/* <Postshow /> */}
-            {/* <CommentCreateForm postId={postId} startOpen /> */}
+            <PostShow postId={postId} />
+            <CommentCreateForm postId={postId} startOpen />
             {/* <CommentList comments={comments} /> */}
         </div>
     );
