@@ -29,7 +29,7 @@ export async function createComment(
     },
     formState: ICreateComentFormState,
     formData: FormData
-) {
+): Promise<ICreateComentFormState> {
     const result = createCommentSchema.safeParse({
         content: formData.get('content'),
     });
