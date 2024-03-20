@@ -3,7 +3,7 @@ import Link from 'next/link';
 import paths from '@/paths';
 
 import type { PostWithData } from '@/lib/queries/posts';
-import type { User, Topic, Post } from '@prisma/client';
+// import type { User, Topic, Post } from '@prisma/client';
 
 interface IPostListProps {
     fetchData: () => Promise<PostWithData[]>;
@@ -15,9 +15,11 @@ const PostList = async ({ fetchData }: IPostListProps) => {
     const renderedPosts = posts.map((post) => {
         const topicSlug = post.topic.slug;
 
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         if (!topicSlug) {
             throw new Error('Need a slug to link to post');
         }
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
         return (
             <div key={post.id} className='border rounded p-2'>

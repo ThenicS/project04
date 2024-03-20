@@ -28,7 +28,7 @@ const CommentCreateForm = ({
     const ref = useRef<HTMLFormElement | null>(null);
 
     const commentForm = (
-        <form action={''}>
+        <form action={formAction}>
             <div className='space-y-2 px-1'>
                 <Textarea
                     name='content'
