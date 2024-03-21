@@ -29,9 +29,7 @@ export default function PostPage({ params }: IPageProps) {
             <PostShow postId={postId} />
             <CommentCreateForm postId={postId} startOpen />
             {/* <CommentList /> */}
-            <CommentList
-                fetchCommentsData={() => findCommentsByPostId(postId)}
-            />
+            <CommentList postId={postId} />
         </div>
     );
 }

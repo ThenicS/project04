@@ -6,17 +6,19 @@ import CommentShow from './comment-show';
 // }
 
 import type { CommentWithUserData } from '@/lib/queries/comments';
-
-// interface ICommentListProps {
-//     comments: () => Promise<CommentWithUserData[]>;
-// }
+import { findCommentsByPostId } from '@/lib/queries/comments';
 
 interface ICommentListProps {
-    fetchCommentsData: () => Promise<CommentWithUserData[]>;
+    postId: string;
 }
 
-const CommentList = async ({ fetchCommentsData }: ICommentListProps) => {
-    const comments = await fetchCommentsData();
+// interface ICommentListProps {
+//     fetchCommentsData: () => Promise<CommentWithUserData[]>;
+// }
+
+const CommentList = async ({ postId }: ICommentListProps) => {
+    // const comments = await fetchCommentsData();
+    const comments = await findCommentsByPostId(postId);
     //
     const topLevelComments = comments.filter(
         (comment) => comment.parentId === null
@@ -26,7 +28,7 @@ const CommentList = async ({ fetchCommentsData }: ICommentListProps) => {
             <CommentShow
                 key={comment.id}
                 commentId={comment.id}
-                comments={comments}
+                postId={postId}
             />
         );
     });

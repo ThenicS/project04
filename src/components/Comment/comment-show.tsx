@@ -4,15 +4,18 @@ import CommentCreateForm from '@/components/Comment/comment-create-form';
 
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
+import { findCommentsByPostId } from '@/lib/queries/comments';
 
 import type { CommentWithUserData } from '@/lib/queries/comments';
 interface ICommentShowProps {
     commentId: string;
-    comments: CommentWithUserData[];
+    postId: string;
+    // comments: CommentWithUserData[];
 }
 
-const CommentShow = ({ commentId, comments }: ICommentShowProps) => {
+const CommentShow = async ({ commentId, postId }: ICommentShowProps) => {
     //
+    const comments = await findCommentsByPostId(postId);
     const comment = comments.find((c) => {
         return c.id === commentId;
     });
@@ -30,7 +33,7 @@ const CommentShow = ({ commentId, comments }: ICommentShowProps) => {
             <CommentShow
                 key={childComments.id}
                 commentId={childComments.id}
-                comments={comments}
+                postId={postId}
             />
         );
     });

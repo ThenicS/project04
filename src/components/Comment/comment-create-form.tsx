@@ -25,10 +25,21 @@ const CommentCreateForm = ({
         actions.createComment.bind(null, { postId, parentId }),
         { errors: {} }
     );
-    const ref = useRef<HTMLFormElement | null>(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    //
+    useEffect(() => {
+        if (formState.success) {
+            formRef.current?.reset();
+
+            if (!startOpen) {
+                setOpen(false);
+            }
+        }
+    }, [formState, startOpen]);
 
     const commentForm = (
-        <form action={formAction}>
+        <form action={formAction} ref={formRef}>
             <div className='space-y-2 px-1'>
                 <Textarea
                     name='content'
@@ -48,15 +59,10 @@ const CommentCreateForm = ({
     //
     return (
         <div>
-            <Button
-                size='sm'
-                variant='light'
-                onClick={() => {
-                    'Clicked';
-                }}>
+            <Button size='sm' variant='light' onClick={() => setOpen(!open)}>
                 Reply
             </Button>
-            {commentForm}
+            {open && commentForm}
         </div>
     );
 };
