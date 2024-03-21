@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import paths from '@/paths';
 import path from 'path';
 // import { comment } from 'postcss';
-import { findCommentsByPostId } from '@/lib/queries/comT';
+import { findCommentsByPostId } from '@/lib/queries/comments';
 interface IPageProps {
     params: {
         slug: string;
@@ -29,7 +29,9 @@ export default function PostPage({ params }: IPageProps) {
             <PostShow postId={postId} />
             <CommentCreateForm postId={postId} startOpen />
             {/* <CommentList /> */}
-            <CommentList comments={() => findCommentsByPostId(postId)} />
+            <CommentList
+                fetchCommentsData={() => findCommentsByPostId(postId)}
+            />
         </div>
     );
 }

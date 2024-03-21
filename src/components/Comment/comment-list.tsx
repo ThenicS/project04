@@ -1,26 +1,40 @@
 //
-//
+import CommentShow from './comment-show';
 
 // interface IPostListProps {
 //     fetchData: () => Promise<PostWithData[]>;
 // }
 
-import type { CommentWithUser } from '@/lib/queries/comT';
+import type { CommentWithUserData } from '@/lib/queries/comments';
+
+// interface ICommentListProps {
+//     comments: () => Promise<CommentWithUserData[]>;
+// }
 
 interface ICommentListProps {
-    comments: () => Promise<CommentWithUser[]>;
+    fetchCommentsData: () => Promise<CommentWithUserData[]>;
 }
 
-const CommentList = async ({ comments }: ICommentListProps) => {
+const CommentList = async ({ fetchCommentsData }: ICommentListProps) => {
+    const comments = await fetchCommentsData();
     //
-    const comments2 = await comments();
-    const renderComments = comments2.map((comment) => {
-        return <div key={comment.id}>{comment.content}</div>;
+    const topLevelComments = comments.filter(
+        (comment) => comment.parentId === null
+    );
+    const renderedComments = topLevelComments.map((comment) => {
+        return (
+            <CommentShow
+                key={comment.id}
+                commentId={comment.id}
+                comments={comments}
+            />
+        );
     });
+
     return (
-        <div>
-            <h3>Comment List</h3>
-            {renderComments}
+        <div className='space-y-3'>
+            <h1 className='text-lg font-bold'>All {comments.length}</h1>
+            {renderedComments}
         </div>
     );
 };

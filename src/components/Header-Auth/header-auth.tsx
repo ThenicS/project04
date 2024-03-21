@@ -18,6 +18,7 @@ import {
 const HeaderAuth = () => {
     const session = useSession();
     const userImage = (session.data?.user?.image as string) || undefined;
+    // console.log(session.data?.user);
 
     let authContent: React.ReactNode;
     // When client loading return null notshow anything
