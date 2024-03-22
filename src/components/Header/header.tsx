@@ -7,7 +7,7 @@ import {
 import { Suspense } from 'react';
 import HeaderAuth from '../Header-Auth/header-auth';
 import SearchPostInput from '../Seach/search-post-input';
-import { ThemeSwitcher } from '../Theme/theme-switcher';
+import ThemeSwitcher from '../Theme/theme-switcher';
 import Link from 'next/link';
 
 const Header = () => {
