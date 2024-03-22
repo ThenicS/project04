@@ -20,11 +20,7 @@ const TopicList = async () => {
         );
     });
 
-    return (
-        <div className='flex flex-row flex-wrap gap-2 bg-lime-100'>
-            {renderTopics}
-        </div>
-    );
+    return <div className='flex flex-row flex-wrap gap-2'>{renderTopics}</div>;
 };
 
 // ***************************
