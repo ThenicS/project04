@@ -39,7 +39,7 @@ const CommentShow = async ({ commentId, postId }: ICommentShowProps) => {
     });
 
     return (
-        <div className='p-4 border mt-2 mb-1'>
+        <div className='p-4 border mt-2 mb-1 rounded-lg'>
             <div className='flex gap-3'>
                 <Image
                     className='w-10 h-10 rounded-full'
@@ -49,10 +49,12 @@ const CommentShow = async ({ commentId, postId }: ICommentShowProps) => {
                     height={40}
                 />
                 <div className='flex-1 space-y-3'>
-                    <p className='=text-sm font-medium text-gray-500'>
+                    <p className='italic text-indigo-600 text-lg font-bold subpixel-antialiased'>
                         {comment.user.name}
                     </p>
-                    <p className='text-gray-900'>{comment.content}</p>
+                    <p className='text-justify whitespace-pre-wrap'>
+                        {comment.content}
+                    </p>
 
                     <CommentCreateForm
                         postId={comment.postId}

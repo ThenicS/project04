@@ -59,7 +59,11 @@ const CommentCreateForm = ({
     //
     return (
         <div>
-            <Button size='sm' variant='light' onClick={() => setOpen(!open)}>
+            <Button
+                color='primary'
+                size='sm'
+                variant='light'
+                onClick={() => setOpen(!open)}>
                 Reply
             </Button>
             {open && commentForm}
