@@ -1,5 +1,6 @@
 import type { Post, Topic } from '@prisma/client';
 import { db } from '@/lib/database/db';
+import { searchPosts } from '../actions';
 
 export type PostWithData = Post & {
     topic: { slug: string };
@@ -25,4 +26,43 @@ export async function fetchPostByTopicSlug(
     // console.log(PostWithData)
     //
     return PostWithData;
+}
+
+export async function findTopPost(): Promise<PostWithData[]> {
+    const TopPostWithData = await db.post.findMany({
+        orderBy: [
+            {
+                Comment: {
+                    _count: 'desc',
+                },
+            },
+        ],
+        include: {
+            topic: { select: { slug: true } },
+            user: { select: { name: true, image: true } },
+            _count: { select: { Comment: true } },
+        },
+        take: 10,
+    });
+
+    return TopPostWithData;
+}
+
+export async function fetchSearchPosts(term: string): Promise<PostWithData[]> {
+    //
+    const SearchPostWithData = await db.post.findMany({
+        include: {
+            topic: { select: { slug: true } },
+            user: { select: { name: true, image: true } },
+            _count: { select: { Comment: true } },
+        },
+        where: {
+            OR: [
+                { title: { contains: term } },
+                { content: { contains: term } },
+            ],
+        },
+    });
+
+    return SearchPostWithData;
 }

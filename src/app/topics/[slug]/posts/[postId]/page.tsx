@@ -3,6 +3,8 @@
 import CommentList from '@/components/Comment/comment-list';
 import CommentCreateForm from '@/components/Comment/comment-create-form';
 import PostShow from '@/components/Post/post-show';
+import PostLoading from '@/components/Post/post-loading';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import paths from '@/paths';
@@ -26,7 +28,9 @@ export default function PostPage({ params }: IPageProps) {
                 href={paths.topicsPage(slug)}>
                 {'< '}Back to {slug}
             </Link>
-            <PostShow postId={postId} />
+            <Suspense fallback={PostLoading()}>
+                <PostShow postId={postId} />
+            </Suspense>
             <CommentCreateForm postId={postId} startOpen />
             {/* <CommentList /> */}
             <CommentList postId={postId} />
