@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Select, SelectItem } from '@nextui-org/react';
+import { Select, SelectItem, Dropdown, DropdownItem } from '@nextui-org/react';
+import { MoonIcon, SunIcon, ServerIcon } from '@heroicons/react/24/outline';
 
 const ThemeSwitcher = () => {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
 
-    // useEffect only runs on the client,
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -19,6 +19,8 @@ const ThemeSwitcher = () => {
 
     return (
         <Select
+            className='w-1/2'
+            size='md'
             value={theme}
             defaultSelectedKeys={['system']}
             aria-label='Select theme'

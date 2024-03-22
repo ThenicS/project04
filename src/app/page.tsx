@@ -7,6 +7,12 @@ import TopicList from '@/components/Topics/topic-list';
 import TopicCreateForm from '@/components/Topics/topic-create-form';
 import PostList from '@/components/Post/post-list';
 import { findTopPost } from '@/lib/queries/posts';
+
+export const metadata = {
+    title: 'ZodCode',
+    description: 'Code Diff description',
+};
+
 export default function Home() {
     // const session = await getServerSession(options);
     // console.log(session.user.id);

@@ -1,6 +1,8 @@
 import Link from 'next/link';
+
 //
 import paths from '@/paths';
+import { Card, Divider } from '@nextui-org/react';
 
 import type { PostWithData } from '@/lib/queries/posts';
 // import type { User, Topic, Post } from '@prisma/client';
@@ -22,19 +24,22 @@ const PostList = async ({ fetchData }: IPostListProps) => {
         // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
         return (
-            <div key={post.id} className='border rounded p-2'>
+            <Card key={post.id} className='space-y-2'>
                 <Link href={paths.postPage(topicSlug, post.id)}>
-                    <h3 className='text-lg font-bold'>{post.title}</h3>
-                    <div className='flex flex-row gap-8'>
-                        <p className='text-xs text-gray-400'>
-                            By {post.user.name}
-                        </p>
-                        <p className='text-xs text-gray-400'>
-                            By {post._count.Comment} comments
-                        </p>
+                    <div className='p-2'>
+                        <h3 className='text-lg font-bold'>{post.title}</h3>
+                        <Divider />
+                        <div className='flex flex-row gap-8'>
+                            <p className='text-xs text-gray-400'>
+                                By {post.user.name}
+                            </p>
+                            <p className='text-xs text-gray-400'>
+                                By {post._count.Comment} comments
+                            </p>
+                        </div>
                     </div>
                 </Link>
-            </div>
+            </Card>
         );
     });
 
