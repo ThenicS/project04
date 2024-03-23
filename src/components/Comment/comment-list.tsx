@@ -1,6 +1,9 @@
 //
 import CommentShow from './comment-show';
 
+import { Suspense } from 'react';
+import CommentLoading from './comment-loading';
+
 // interface IPostListProps {
 //     fetchData: () => Promise<PostWithData[]>;
 // }
@@ -25,11 +28,13 @@ const CommentList = async ({ postId }: ICommentListProps) => {
     );
     const renderedComments = topLevelComments.map((comment) => {
         return (
-            <CommentShow
-                key={comment.id}
-                commentId={comment.id}
-                postId={postId}
-            />
+            <Suspense key={comment.id} fallback={<CommentLoading />}>
+                <CommentShow
+                    key={comment.id}
+                    commentId={comment.id}
+                    postId={postId}
+                />
+            </Suspense>
         );
     });
 

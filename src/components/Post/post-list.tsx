@@ -28,7 +28,7 @@ const PostList = async ({ fetchData }: IPostListProps) => {
                 <Link href={paths.postPage(topicSlug, post.id)}>
                     <div className='p-2'>
                         <h3 className='text-lg font-bold'>{post.title}</h3>
-                        <Divider />
+                        <Divider className='my-2' />
                         <div className='flex flex-row gap-8'>
                             <p className='text-xs text-gray-400'>
                                 By {post.user.name}

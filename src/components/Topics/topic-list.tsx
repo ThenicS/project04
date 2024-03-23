@@ -14,7 +14,9 @@ const TopicList = async () => {
         return (
             <div key={topic.id}>
                 <Link href={paths.topicsPage(topic.slug)}>
-                    <Chip>{topic.slug}</Chip>
+                    <Chip radius='full' color='secondary' variant='shadow'>
+                        {topic.slug}
+                    </Chip>
                 </Link>
             </div>
         );

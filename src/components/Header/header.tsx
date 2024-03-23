@@ -3,6 +3,7 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
+    Kbd,
 } from '@nextui-org/react';
 import { Suspense } from 'react';
 import HeaderAuth from '../Header-Auth/header-auth';
@@ -15,7 +16,7 @@ const Header = () => {
         <Navbar className='shadow mb-6'>
             <NavbarBrand>
                 <Link href='/' className='font-bold'>
-                    ZodCode
+                    <Kbd keys={['command']}>ZodCode</Kbd>
                 </Link>
             </NavbarBrand>
             <NavbarContent justify='center'>

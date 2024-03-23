@@ -20,7 +20,7 @@ const TopicCreateForm = () => {
     });
     return (
         <Popover placement='left'>
-            <PopoverTrigger>
+            <PopoverTrigger className='flex justify-center'>
                 <Button color='primary'>Create Topic</Button>
             </PopoverTrigger>
             <PopoverContent>

@@ -7,6 +7,7 @@ import { Button } from '@nextui-org/react';
 import { findCommentsByPostId } from '@/lib/queries/comments';
 
 import type { CommentWithUserData } from '@/lib/queries/comments';
+import { resolve } from 'path';
 interface ICommentShowProps {
     commentId: string;
     postId: string;
@@ -14,6 +15,7 @@ interface ICommentShowProps {
 }
 
 const CommentShow = async ({ commentId, postId }: ICommentShowProps) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
     //
     const comments = await findCommentsByPostId(postId);
     const comment = comments.find((c) => {

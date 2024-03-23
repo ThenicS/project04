@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import paths from '@/paths';
 import path from 'path';
-// import { comment } from 'postcss';
+
 import { findCommentsByPostId } from '@/lib/queries/comments';
 interface IPageProps {
     params: {

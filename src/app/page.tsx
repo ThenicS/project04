@@ -24,7 +24,7 @@ export default function Home() {
                     <h1 className='text-xl m2'>Top Post</h1>
                     <PostList fetchData={findTopPost} />
                 </div>
-                <div className='border shadow py-3 px-2'>
+                <div className='border shadow py-3 px-2 rounded-xl'>
                     <TopicCreateForm />
                     <Divider className='my-2' />
                     <h3 className='text-lg'>Topics</h3>
