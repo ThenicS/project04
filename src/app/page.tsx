@@ -10,7 +10,7 @@ import { findTopPost } from '@/lib/queries/posts';
 
 export const metadata = {
     title: 'ZodCode',
-    description: 'Code Diff description',
+    description: 'ZodeCode description',
 };
 
 export default function Home() {

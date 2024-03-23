@@ -17,6 +17,12 @@ interface IPageProps {
         postId: string;
     };
 }
+
+export const metadata = {
+    title: 'ZodCode Post Page',
+    description: 'ZodCode Post Page description',
+};
+
 export default function PostPage({ params }: IPageProps) {
     //
     const { slug, postId } = params;

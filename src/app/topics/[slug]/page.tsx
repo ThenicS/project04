@@ -10,6 +10,11 @@ interface ITopicPageProps {
     };
 }
 
+export const metadata = {
+    title: 'ZodCode Topic Page',
+    description: 'Code Diff description',
+};
+
 export default function TopicPage({ params }: ITopicPageProps) {
     const { slug } = params;
     return (
