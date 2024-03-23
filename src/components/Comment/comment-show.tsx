@@ -3,7 +3,7 @@
 import CommentCreateForm from '@/components/Comment/comment-create-form';
 
 import Image from 'next/image';
-import { Button } from '@nextui-org/react';
+import { Button, Card } from '@nextui-org/react';
 import { findCommentsByPostId } from '@/lib/queries/comments';
 
 import type { CommentWithUserData } from '@/lib/queries/comments';
@@ -54,9 +54,11 @@ const CommentShow = async ({ commentId, postId }: ICommentShowProps) => {
                     <p className='italic text-indigo-600 text-lg font-bold subpixel-antialiased'>
                         {comment.user.name}
                     </p>
-                    <p className='text-justify whitespace-pre-wrap'>
-                        {comment.content}
-                    </p>
+                    <Card className='p-4'>
+                        <p className='text-justify whitespace-pre-wrap'>
+                            {comment.content}
+                        </p>
+                    </Card>
 
                     <CommentCreateForm
                         postId={comment.postId}
